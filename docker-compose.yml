@@ -1,0 +1,14 @@
+version: '3'
+services:
+  fastapi:
+    build:
+      context: .
+      dockerfile: ./main/Dockerfile.backend
+    ports:
+      - "8000:8000"
+  gradio_ui:
+    build:
+      context: .
+      dockerfile: ./gradio_ui/Dockerfile.frontend
+    ports:
+      - "7860:7860"

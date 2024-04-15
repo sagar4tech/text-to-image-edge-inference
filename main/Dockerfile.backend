@@ -1,0 +1,28 @@
+# Dockerfile for FastAPI server
+FROM python:3.9-slim
+
+# Install git, gcc, and python3-dev
+RUN apt-get update && apt-get install -y \
+    git \
+    gcc \
+    python3-dev
+
+WORKDIR /app
+
+# Copy the entire main directory
+COPY ./main ./main
+
+COPY requirements.txt .
+
+# Install torch using pip
+RUN pip install torch
+
+# Install Python dependencies
+RUN pip install --no-cache-dir -r requirements.txt
+
+EXPOSE 8000
+
+# Change the working directory to main
+WORKDIR /app/main
+
+CMD ["python", "main.py"]

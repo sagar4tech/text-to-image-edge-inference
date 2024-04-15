@@ -1,0 +1,28 @@
+# Dockerfile for Gradio UI frontend
+FROM python:3.9-slim
+
+# Install git, gcc, and python3-dev
+RUN apt-get update && apt-get install -y \
+    git \
+    gcc \
+    python3-dev
+
+WORKDIR /app
+
+# Copy the entire gradio directory
+COPY ./gradio_ui ./gradio_ui
+
+COPY requirements.txt .
+
+# Install torch using pip
+RUN pip install torch
+
+# Install Python dependencies
+RUN pip install --no-cache-dir -r requirements.txt
+
+EXPOSE 7860
+
+# Change the working directory to gradio
+WORKDIR /app/gradio_ui
+
+CMD ["python", "gradio_ui.py"]
