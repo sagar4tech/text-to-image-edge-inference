@@ -1,7 +1,6 @@
 safetensors==0.4.2
 torchvision==0.17.2
 uvicorn==0.29.0
-accelerate==0.29.2
 aiofiles==23.2.1
 altair==5.3.0
 annotated-types==0.6.0
